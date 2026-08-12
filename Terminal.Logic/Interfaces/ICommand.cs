@@ -2,7 +2,7 @@
 {
     internal interface ICommand
     {
-        public bool ValidateParams();
-        public void Execute();
+        public void SetArgs(string[] args);
+        public string[] Execute();
     }
 }
