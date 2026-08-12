@@ -26,7 +26,7 @@ namespace Terminal.Logic.Validators
         {
             Type? argsValidatorType = Type.GetType(BuildArgsVaildatorTypeName());
 
-            if (argsValidatorType == null || !argsValidatorType.IsInstanceOfType(typeof(IArgsValidator)))
+            if (argsValidatorType == null || !argsValidatorType.IsAssignableTo(typeof(IArgsValidator)))
                 throw new InvalidOperationException(nameof(argsValidatorType));
 
             object? instance = Activator.CreateInstance(argsValidatorType);
@@ -41,7 +41,7 @@ namespace Terminal.Logic.Validators
         {
             Type? commandType = Type.GetType(BuildCommandTypeName());
 
-            if (commandType == null || !commandType.IsInstanceOfType(typeof(IArgsValidator)))
+            if (commandType == null || !commandType.IsAssignableTo(typeof(ICommand)))
                 throw new InvalidOperationException(nameof(commandType));
 
             object? instance = Activator.CreateInstance(commandType);
@@ -54,12 +54,12 @@ namespace Terminal.Logic.Validators
 
         private string BuildArgsVaildatorTypeName()
         {
-            return $"{_argsValidatorNamespace}.{_command}{_argsValidatorSufix}";
+            return $"{_argsValidatorNamespace}.{ValidCommands[_command]}{_argsValidatorSufix}";
         }
 
         private string BuildCommandTypeName()
         {
-            return $"{_commandNamespace}.{_command}";
+            return $"{_commandNamespace}.{ValidCommands[_command]}";
         }
     }
 }

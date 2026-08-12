@@ -6,7 +6,7 @@ namespace Terminal.Logic.Validators.ArgsValidators
     {
         public bool ValidateArgs(string[] args)
         {
-            return false;
+            return true;
         }
     }
 }

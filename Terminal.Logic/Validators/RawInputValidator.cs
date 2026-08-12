@@ -28,6 +28,7 @@ namespace Terminal.Logic.Validators
             bool isValid = commandValidator.ValidateCommand() && commandValidator.ValidateArgs(args);
 
             command = isValid ? commandValidator.GetCommand() : null;
+            command?.SetArgs(args);
             return isValid;
         }
     }
