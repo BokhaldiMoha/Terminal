@@ -1,6 +1,6 @@
-﻿using Terminal.Interfaces;
+﻿using Terminal.Logic.Interfaces;
 
-namespace Terminal.Commands
+namespace Terminal.Logic.Commands
 {
     internal class LsCommand : ICommand
     {

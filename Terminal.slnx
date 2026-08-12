@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="Terminal.Logic/Terminal.Logic.csproj" />
   <Project Path="Terminal/Terminal.csproj" />
 </Solution>

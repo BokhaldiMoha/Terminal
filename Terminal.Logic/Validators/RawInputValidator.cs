@@ -1,8 +1,8 @@
-﻿using Terminal.Interfaces;
+﻿using Terminal.Logic.Interfaces;
 
-namespace Terminal.Validators
+namespace Terminal.Logic.Validators
 {
-    public class RawInputValidator
+    internal class RawInputValidator
     {
         private string? _rawInput;
 
@@ -10,13 +10,13 @@ namespace Terminal.Validators
 
         public bool Validate(out ICommand? command)
         {
-            if (string.IsNullOrWhiteSpace(this._rawInput))
+            if (string.IsNullOrWhiteSpace(_rawInput))
             {
                 command = null;
                 return false;
             }
 
-            string[] tmpArgs = this._rawInput.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            string[] tmpArgs = _rawInput.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
             string commandName = tmpArgs[0];
             return TryGetCommand(commandName, tmpArgs.Skip(1).ToArray(), out command);

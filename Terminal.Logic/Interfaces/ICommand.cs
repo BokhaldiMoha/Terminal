@@ -1,6 +1,6 @@
-﻿namespace Terminal.Interfaces
+﻿namespace Terminal.Logic.Interfaces
 {
-    public interface ICommand
+    internal interface ICommand
     {
         public bool ValidateParams();
         public void Execute();

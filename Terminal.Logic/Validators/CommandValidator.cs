@@ -1,11 +1,11 @@
-﻿using Terminal.Interfaces;
+﻿using Terminal.Logic.Interfaces;
 
-namespace Terminal.Validators
+namespace Terminal.Logic.Validators
 {
     internal class CommandValidator
     {
-        private const string _commandNamespace = "Terminal.Commands";
-        private const string _argsValidatorNamespace = "Terminal.Validators.ArgsValidators";
+        private const string _commandNamespace = "Terminal.Logic.Commands";
+        private const string _argsValidatorNamespace = "Terminal.Logic.Validators.ArgsValidators";
         private const string _argsValidatorSufix = "ArgsValidator";
 
         public static Dictionary<string, string> ValidCommands = new()
