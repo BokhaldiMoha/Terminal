@@ -3,11 +3,11 @@ using Terminal.Logic.Validators;
 
 namespace Terminal.Logic
 {
-    public class Command
+    public class TerminalCommand
     {
         private ICommand _command;
 
-        public Command(string? rawInput)
+        public TerminalCommand(string? rawInput)
         {
             RawInputValidator rawInputValidator = new(rawInput);
             

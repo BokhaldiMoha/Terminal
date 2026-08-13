@@ -3,18 +3,18 @@ using Terminal.Logic.Interfaces;
 
 namespace Terminal.Logic.Commands
 {
-    internal class LsCommand : ICommand
+    internal class CdCommand : ICommand
     {
-        private bool _showHidden = false;
+        private string _path = string.Empty;
 
         public void SetArgs(string[] args)
         {
-            _showHidden = args.Contains("-a");
+            _path = args[0];
         }
 
         public string[] Execute()
         {
-            var executor = new LsCommandExecutor(_showHidden);
+            var executor = new CdCommandExecutor(_path);
             return executor.Execute();
         }
     }

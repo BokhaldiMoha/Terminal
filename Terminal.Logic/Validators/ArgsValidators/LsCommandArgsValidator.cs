@@ -4,9 +4,11 @@ namespace Terminal.Logic.Validators.ArgsValidators
 {
     internal class LsCommandArgsValidator : IArgsValidator
     {
+        private readonly string[] _validArgs = { "-a" };
+
         public bool ValidateArgs(string[] args)
         {
-            return true;
+            return args.All(arg => _validArgs.Contains(arg));
         }
     }
 }

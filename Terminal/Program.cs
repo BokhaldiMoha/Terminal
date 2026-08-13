@@ -11,8 +11,8 @@ namespace Terminal
                 string? rawInput = Console.ReadLine();
                 try
                 {
-                    Command command = new(rawInput);
-                    var outputLines = command.Execute();
+                    TerminalCommand terminalCommand = new(rawInput);
+                    var outputLines = terminalCommand.Execute();
                     foreach (string line in outputLines)
                         Console.WriteLine(line);
                 }

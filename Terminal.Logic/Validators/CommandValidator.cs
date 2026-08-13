@@ -10,7 +10,9 @@ namespace Terminal.Logic.Validators
 
         public static Dictionary<string, string> ValidCommands = new()
         {
-            { "ls", "LsCommand" }
+            { "ls", "LsCommand" },
+            { "cd", "CdCommand" },
+            { "pwd", "PwdCommand" },
         };
 
         private string _command;
@@ -27,12 +29,12 @@ namespace Terminal.Logic.Validators
             Type? argsValidatorType = Type.GetType(BuildArgsVaildatorTypeName());
 
             if (argsValidatorType == null || !argsValidatorType.IsAssignableTo(typeof(IArgsValidator)))
-                throw new InvalidOperationException(nameof(argsValidatorType));
+                throw new InvalidOperationException("Internal error: Failed to create args validator instance.");
 
             object? instance = Activator.CreateInstance(argsValidatorType);
 
             if (instance is not IArgsValidator argsValidator)
-                throw new InvalidOperationException(nameof(argsValidatorType));
+                throw new InvalidOperationException("Internal error: Failed to create args validator instance.");
 
             return argsValidator.ValidateArgs(args);
         }
@@ -42,12 +44,12 @@ namespace Terminal.Logic.Validators
             Type? commandType = Type.GetType(BuildCommandTypeName());
 
             if (commandType == null || !commandType.IsAssignableTo(typeof(ICommand)))
-                throw new InvalidOperationException(nameof(commandType));
+                throw new InvalidOperationException("Internal error: Failed to create command instance.");
 
             object? instance = Activator.CreateInstance(commandType);
 
             if (instance is not ICommand command)
-                throw new InvalidOperationException(nameof(commandType));
+                throw new InvalidOperationException("Internal error: Failed to create command instance.");
 
             return command;
         }

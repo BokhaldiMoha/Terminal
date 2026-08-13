@@ -1,12 +1,22 @@
-﻿namespace Terminal.Logic.Executors
+﻿using Terminal.Logic.Interfaces;
+
+namespace Terminal.Logic.Executors
 {
-    internal class LsCommandExecutor
+    internal class LsCommandExecutor : ICommandExecutor
     {
-        public LsCommandExecutor() { }
+        private readonly bool _showHidden;
+
+        public LsCommandExecutor(bool showHidden)
+        {
+            _showHidden = showHidden;
+        }
 
         public string[] Execute()
         {
-            return ["file1.txt", "file2.txt"];
+            var entries = Directory.EnumerateFileSystemEntries(Globals.CurrentDirectory);
+            if (!_showHidden)
+                entries = entries.Where(e => !File.GetAttributes(e).HasFlag(FileAttributes.Hidden));
+            return entries.ToArray();
         }
     }
 }
